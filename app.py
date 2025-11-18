@@ -13,4 +13,7 @@ if st.button("Test OpenAI"):
         ]
     )
 
-    st.write(response.choices[0].message["content"])
+    # NEW SDK Structure
+    reply = response.choices[0].message.content
+
+    st.write(reply)
