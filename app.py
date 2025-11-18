@@ -15,7 +15,7 @@ if not OPENAI_API_KEY:
     st.error("⚠️ No API key found. Please set OPENAI_API_KEY in your .env file.")
     st.stop()
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # --- Streamlit UI ---
 st.title("🖼️ Image → AI Report Generator (GPT-4o)")
