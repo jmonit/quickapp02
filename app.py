@@ -1,13 +1,16 @@
-import openai
 import streamlit as st
+from openai import OpenAI
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
+st.title("OpenAI Test")
 
-response = openai.ChatCompletion.create(
-    model="gpt-4o-mini",
-    messages=[{"role": "user", "content": "Say hello"}]
-)
+if st.button("Test OpenAI"):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "user", "content": "Say hello!"}
+        ]
+    )
 
-print(response["choices"][0]["message"]["content"])
-
+    st.write(response.choices[0].message["content"])
