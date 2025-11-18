@@ -1,6 +1,13 @@
+import openai
 import streamlit as st
 
-st.title("🎈 Mjs new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+
+
+response = openai.ChatCompletion.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Say hello"}]
 )
+
+print(response["choices"][0]["message"]["content"])
+
